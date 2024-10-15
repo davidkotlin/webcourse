@@ -88,11 +88,11 @@
                 <input type="password" id="password" name="password" placeholder="請輸入密碼" required>
             </div>
             <div class="btn__margin">
-                <button class="btn" id="loginBtn" type="submit">登入</button>    
+                <button class="btn" id="loginBtn" type="button">登入</button>    
             </div>    
         </form>
         <div>
-            <span>沒有帳號嗎?</span>
+            <span>沒有帳號嗎?</span>&nbsp;&nbsp;
             <span class="btn"><a href="register.php">註冊</a></span>
         </div> 
     </div>

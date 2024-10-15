@@ -36,6 +36,18 @@
                         <input type="text" id="article_title" name="article_title" placeholder="請輸入標題" required>
                     </div>
                     <div class="form__input">
+                        <label for="company_name">企業名稱</label>
+                        <input type="text" id="company_name" name="company_name" placeholder="請輸入企業名稱" required>
+                    </div>
+                    <div class="form__input">
+                        <label for="start_date">開始時間</label>
+                        <input type="date" id="start_date" name="start_date" required>
+                    </div>
+                    <div class="form__input">
+                        <label for="end_date">結束時間</label>
+                        <input type="date" id="end_date" name="end_date" required>
+                    </div>
+                    <div class="form__input">
                         <label for="article_content">內容</label>
                         <textarea id="article_content" name="article_content" placeholder="請輸入內容" required></textarea>
                     </div>
