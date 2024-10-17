@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+/*導覽列與其元素*/
+.navbar{
+    background-color: #074f15;
+    padding: 10px 20px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);/*讓導覽列有阴影*/
+}
+.navbar__container{
+    display: flex;/*Flexbox 的默認行為是讓子元素在主軸上水平排列*/
+    justify-content: space-between;/*兩端的元素緊貼容器的左右邊緣，而中間的空間則均勻分配給其他元素*/
+    align-items: center;
+}
+.navbar__logo{
+    font-size: 40px;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    text-decoration: none;/*去除底線*/
+    transition: background-color 0.3s ease;
+}
+.navbar__logo:hover{
+    background-color: #41884c;
+}
+.navbar__menu{
+    display: flex;
+    list-style-type: none;
+}
+.navbar__menu li{
+    padding: 10px;
+}
+.navbar__menu li a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;/*景顏色改變時，設定一個 0.3 秒的過渡*/
+    font-size: 20px;
+}
+.navbar__menu li a:hover {
+    background-color: #41884c;/*當滑鼠懸停在鏈接上時，背景顏色變*/
+}
+/*網頁內容*/
+.container{
+    height: 100vh;
+    margin: 20px;
+}
+/*個頁面標題*/
+.title{
+    text-align: left; /* 將標題文字左對齊 */
+    margin: 30px;
+    padding-left: 210px;
+    margin-bottom: 40px; /* 與表單保持距離 */
+    font-size: 50px; /* 調整標題文字大小 */
+    color: rgb(86, 31, 31);
+}
