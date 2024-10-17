@@ -7,34 +7,50 @@
 </head>
 <body>
     <?php 
-        $tall = $_GET['tall']/100;
-        $weight = $_GET['weight'];
-        $sex = $_GET['sex'];
-        $BMI = $weight / ($tall * $tall);
-        echo "你的身高:".$tall*100,"公分";
-        echo "<br>你的體重:".$weight."公斤<br>你的BMI:".$BMI."<br>";
-        if($sex == "male"){
-            if($BMI < 17){
-                echo "評語:身為男生，你的體重過輕<br>";
-            }elseif($BMI < 23.2){
-                echo "評語:身為男生，你的體重正常<br>";
-            }elseif($BMI < 25.4){
-                echo "評語:身為男生，你的體重過重<br>";
-            }else{
-                echo "評語:身為男生，你的體重肥胖<br>";
-            }
-        }elseif($sex == "female"){
-            if($BMI < 17){
-                echo "評語:身為女生，你的體重過輕<br>";
-            }elseif($BMI < 22.7){
-                echo "評語:身為女生，你的體重正常<br>";
-            }elseif($BMI < 25.6){
-                echo "評語:身為女生，你的體重過重<br>";
-            }else{
-                echo "評語:身為女生，你的體重肥胖<br>";
+        $money = $_GET['money'];
+        $moneyInt = (int)$money;
+        echo "輸入金額為".$moneyInt."元<br>";
+        $fifty = $_GET['fifty'];
+        $ten = $_GET['ten'];
+        $fire = $_GET['fire'];
+        
+        $fiftyAmount ; 
+        $tenAmount ;
+        $fireAmount ;
+        $remainder=$moneyInt;
+        
+        if($fifty == "yes"){
+            $fiftyAmount = $moneyInt / 50;
+            $fiftyAmount = (int)$fiftyAmount;
+            $remainder = $moneyInt % 50;
+            echo "50元需要".$fiftyAmount."個";
+            if ($remainder > 0) {
+                echo "一元需要" . $remainder . "個";
             }
         }
+        else{
+            $remainder = $moneyInt;
+        }
+        if($ten == "yes"){
+            $tenAmount = $remainder / 10;
+            $tenAmount = (int)$tenAmount;
+            $remainder = $remainder % 10;
+            echo "10元需要".$tenAmount."個";
+            if ($remainder > 0) {
+                echo "一元需要" . $remainder . "個";
+            }
+        }
+        if($fire == "yes"){
+            $fireAmount = $remainder / 5;
+            $fireAmount = (int)$fireAmount;
+            echo "5元需要".$fireAmount."個";
+            if ($remainder > 0) {
+                echo "一元需要" . $remainder . "個";
+            }
+        }
+        
     ?>
+    <br>
     <a href="test1.php">回首頁</a>
 </body>
 </html>

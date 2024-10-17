@@ -8,20 +8,35 @@
 <body>
     <form action="test2.php" method="get">
         <div>
-            <label for="tall">請輸入身高</label>
-            <input type="text" id="tall" name="tall" placeholder="請輸入身高" required>
+            <label for="money">請輸入金額</label>
+            <input type="text" id="money" name="money" placeholder="請輸入金額" required>
         </div>
         <div>
-            <label for="weight">請輸入體重</label>
-            <input type="text" id="weight" name="weight" placeholder="請輸入體重" required>
-        </div>
-        <div>
-            <label for="sex">請輸入性別</label>
-            <select id="sex" name="sex" required>
-                <option value="" disabled selected>請選擇性別</option>
-                <option value="male">男</option>
-                <option value="female">女</option>
+            <label for="fifty">是否需要50元</label>
+            <select id="fifty" name="fifty" required>
+                <option value="yes" selected>(預設是)</option>
+                <option value="yes">是</option>
+                <option value="no">否</option>
             </select>
+        </div>
+        <div>
+            <label for="ten">是否需要10元</label>
+            <select id="ten" name="ten" required>
+                <option value="yes" selected>(預設是)</option>
+                <option value="yes">是</option>
+                <option value="no">否</option>
+            </select>
+        </div>
+        <div>
+            <label for="fire">是否需要5元</label>
+            <select id="fire" name="fire" required>
+                <option value="yes" selected>(預設是)</option>
+                <option value="yes">是</option>
+                <option value="no">否</option>
+            </select>
+        </div>
+        <div>
+            <span>一元視情況而定</span>
         </div>
         <div>
             <button type="submit">送出</button>
