@@ -1,3 +1,4 @@
+<!-- 上船報告書 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,15 +17,15 @@
                 <div class="navbar__container">
                     <a class="navbar__logo" href="index.php">產業實習平台</a>
                     <ul class="navbar__menu">
+                        <li><a href="user.php"><?php echo $_SESSION["user_name"]."&nbsp;&nbsp;".$_SESSION["user_role"]; ?></a></li>
                         <li><a href="index.php">首頁</a></li>
                         <li><a href="post.php">上傳實習資訊</a></li>              
                         <li><a href="upload.php">上傳報告書</a></li>
-                        <li><a href="user.php">個人檔案</a></li>
                         <li><a href="logout.php">登出</a></li>               
                     </ul>
                 </div>
             </nav>
-            <h1 class="title">上傳</h1>
+            <h1 class="title">上傳報告書</h1>
             <div class="form__container" >        
                 <form class="form" id="upload_form" action="upload.php" method="post" enctype="multipart/form-data">
                     <div class="form__input">
@@ -59,14 +60,14 @@
                 <div class="navbar__container">
                     <a class="navbar__logo" href="index.php">產業實習平台</a>
                     <ul class="navbar__menu">
+                        <li><a href="user.php"><?php echo $_SESSION["user_name"]."&nbsp;&nbsp;".$_SESSION["user_role"]; ?></a></li>
                         <li><a href="index.php">首頁</a></li>              
                         <li><a href="upload.php">上傳報告書</a></li>
-                        <li><a href="user.php">個人檔案</a></li>
                         <li><a href="logout.php">登出</a></li>               
                     </ul>
                 </div>
             </nav>
-            <h1 class="title">上傳</h1>
+            <h1 class="title">上傳報告書</h1>
             <div class="form__container" >        
                 <form class="form" id="upload_form" action="upload.php" method="post" enctype="multipart/form-data">
                     <div class="form__input">

@@ -4,8 +4,7 @@
     display: flex;           /* 使用 Flexbox 布局 */
     flex-direction: column;  /* 縱向排列元素 */
     align-items: center;     /* 垂直居中對齊 */
-    justify-content: center;
-    margin-bottom: 50px;  
+    justify-content: center;  
 }
 
 /*表格*/
@@ -21,9 +20,6 @@
     border-radius: 10px;     /* 圓角邊框 */
 }
 /*註冊連結*/
-/* .form__container div{
-    margin: 10px;
-} */
 .form__container div span{
     font-weight: bold;
     color: rgb(86, 31, 31);

@@ -10,7 +10,6 @@
 </head>
 <!-- php -->
 <?php 
-    session_start();
     session_start(); // 設定session紀錄登入資訊
     $host = 'localhost'; // 資料庫主機
     $dbname = 'internship'; // 請替換為您的資料庫名稱
@@ -66,7 +65,7 @@
                 </select>
             </div>
             <div class="btn__margin">
-                <button class="btn" id="registerBtn" type="submit">註冊</button>
+                <button class="btn" id="registerBtn" type="button">註冊</button>
             </div>
         </form>
     </div>

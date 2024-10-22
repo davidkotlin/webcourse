@@ -6,41 +6,28 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="test2.php" method="get">
-        <div>
-            <label for="money">請輸入金額</label>
-            <input type="text" id="money" name="money" placeholder="請輸入金額" required>
-        </div>
-        <div>
-            <label for="fifty">是否需要50元</label>
-            <select id="fifty" name="fifty" required>
-                <option value="yes" selected>(預設是)</option>
-                <option value="yes">是</option>
-                <option value="no">否</option>
-            </select>
-        </div>
-        <div>
-            <label for="ten">是否需要10元</label>
-            <select id="ten" name="ten" required>
-                <option value="yes" selected>(預設是)</option>
-                <option value="yes">是</option>
-                <option value="no">否</option>
-            </select>
-        </div>
-        <div>
-            <label for="fire">是否需要5元</label>
-            <select id="fire" name="fire" required>
-                <option value="yes" selected>(預設是)</option>
-                <option value="yes">是</option>
-                <option value="no">否</option>
-            </select>
-        </div>
-        <div>
-            <span>一元視情況而定</span>
-        </div>
-        <div>
-            <button type="submit">送出</button>
-        </div> 
-    </form>
+    <?php 
+    $num=[];
+    for($i=1;$i<=6;$i++){
+        $num[$i]=rand(1,10);
+        for($j=1;$j<$i;$j++){
+            if($num[$i]==$num[$j]){
+                $i--;//相同的話，八股重新生
+                break;
+            }
+        }
+    }
+    sort($num); 
+
+    foreach($num as $result) {
+        echo $result . "<br>"; 
+    }
+    // $num=range(1,100);
+    // shuffle($num);
+    // $resultNum=array_slice($num,0,6);
+    // foreach($resultNum as $result){
+    //     echo $result."<br>";
+    // }
+    ?>
 </body>
 </html>
