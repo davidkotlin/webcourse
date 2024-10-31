@@ -1,4 +1,4 @@
-<!-- 用戶頁面 -->
+<!-- 顯示你的精選 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +10,7 @@
     <title>產業實習平台</title>
 </head>
 <body>
-    <?php session_start(); ?>
+<?php session_start(); ?>
     <?php if ( isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ): ?>
         <?php if ($_SESSION["user_role"] === "administrator"): ?>
             <nav class="navbar">
@@ -56,27 +56,7 @@
                 <button class="sidebarBtn" id="editArticleBtn" type="button">修改上傳</button>
             </div>
             <div class="mainContent">
-                <div class="showSection">
-                    <h1 class="title">個人資料</h1>
-                    <div class="form__container">
-                        <form class="form" id="editUserForm" action="user.php" method="post">
-                            <div class="form__input">
-                                <label for="name">修改名稱</label>
-                                <input type="text" id="name" name="name" placeholder="請輸入名稱" required>
-                            </div>
-                            <div class="btn__margin">
-                                <button class="btn" id="editNameBtn" type="button">修改</button>
-                            </div>
-                            <div class="form__input">
-                                <label for="password">修改密碼</label>
-                                <input type="password" id="password" name="password" placeholder="請輸入密碼" required>
-                            </div>
-                            <div class="btn__margin">
-                                <button class="btn" id="editPasswordBtn" type="button">修改</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                <h1 class="title">精選實習</h1>
             </div>
         </div>    
     <?php else: ?>
@@ -85,6 +65,6 @@
             window.location.href = 'index.php'; // 回首頁
         </script>
     <?php endif; ?>
-    <script src="js/script.js"></script>   
+    <script src="js/script.js"></script>
 </body>
 </html>

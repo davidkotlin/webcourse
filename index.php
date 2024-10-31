@@ -18,8 +18,7 @@
                     <?php if ($_SESSION["user_role"] === "administrator"): ?>
                         <li><a href="user.php"><?php echo $_SESSION["user_name"]."&nbsp;&nbsp;".$_SESSION["user_role"]; ?></a></li>
                         <li><a href="index.php">首頁</a></li>
-                        <li><a href="post.php">上傳實習資訊</a></li>
-                        <li><a href="upload.php">上傳報告書</a></li>
+                        <li><a href="announcement.php">上傳公告</a></li>
                         <li><a href="logout.php">登出</a></li>
                     <?php elseif ($_SESSION["user_role"] === "secretary"): ?>
                         <li><a href="user.php"><?php echo $_SESSION["user_name"]."&nbsp;&nbsp;".$_SESSION["user_role"]; ?></a></li>
@@ -42,18 +41,20 @@
     </nav>
     <div class="main">
         <div class="sidebar">
-            <button id="sidebarBtn" type="button">種類一</button>
-            <button id="sidebarBtn" type="button">種類二</button>
-            <button id="sidebarBtn" type="button">種類三</button>
-            <button id="sidebarBtn" type="button">種類四</button>
-            <button id="sidebarBtn" type="button">種類五</button>
+            <button class="sidebarBtn" id="type1Btn" type="button">種類一</button>
+            <button class="sidebarBtn" id="type2Btn" type="button">種類二</button>
+            <button class="sidebarBtn" id="type3Btn" type="button">種類三</button>
+            <button class="sidebarBtn" id="type4Btn" type="button">種類四</button>
+            <button class="sidebarBtn" id="type5Btn" type="button">種類五</button>
         </div>
         <div class="mainContent">
+            <div class="showSection">
             <h1 class="title">實習資訊</h1>
             <div class="container">
                 <div class="posts">
                     <section class="post"></section>
                 </div>
+            </div>
             </div>
         </div>       
     </div>

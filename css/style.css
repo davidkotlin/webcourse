@@ -44,10 +44,29 @@
 }
 /*網頁內容*/
 .mainContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 80%;
+    padding: 0 40px;
+    background-image: url("backgroundpic.jpg");
+    background-size: cover; /* 背景圖片會覆蓋整個元素 */
+    background-position: center; /* 背景圖片置中 */
+    background-repeat: no-repeat; /* 不重複背景圖片 */
+    background-color: rgba(255, 255, 255, 0.5); /* 透明的白色層 */
+    background-blend-mode: overlay; /* 混合模式，使顏色疊加到圖片上 */
 }
 .container{
     margin: 20px;
+}
+.showSection{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(112, 112, 112, 0.3);
+    margin: 30px;
+    border-radius: 6px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
 }
 /*個頁面標題*/
 .title{
@@ -56,7 +75,7 @@
     padding-left: 210px;
     margin-bottom: 40px; /* 與表單保持距離 */
     font-size: 50px; /* 調整標題文字大小 */
-    color: rgb(86, 31, 31);
+    color: rgb(70, 70, 70);
 }
 /*有sidebar的網頁*/
 .main{
@@ -67,7 +86,8 @@
 /*sidebar*/
 .sidebar{
     width: 20%;
-    background-color: rgb(86, 31, 31);;
+    background-color: rgba(128, 128, 128, 0.75);
     padding: 20px;
     box-sizing: border-box; /* 確保內邊距不影響寬度 */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
 }

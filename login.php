@@ -81,7 +81,7 @@
         <form class="form" id="loginForm" action="login.php" method="post">
             <div class="form__input">
                 <label for="account">電子郵件</label>
-                <input type="text" id="account" name="account" placeholder="請輸入帳號" required>
+                <input type="text" id="account" name="account"  placeholder="請輸入帳號" required>
             </div>
             <div class="form__input">
                 <label for="password">密碼</label>

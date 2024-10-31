@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" type="text/css" href="css/form.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" type="text/css" href="css/button.css?v=<?php echo time(); ?>">
+
     <title>註冊</title>
 </head>
 <!-- php -->

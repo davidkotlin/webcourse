@@ -1,4 +1,4 @@
-<!-- 上船報告書 -->
+<!-- 上船公告頁面 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,28 +13,18 @@
     <?php session_start(); ?>
     <?php if ( isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ): ?>
         <?php if ($_SESSION["user_role"] === "administrator"): ?>        
-            <script>
-                alert('您沒有權限使用此頁面');
-                window.location.href = 'index.php'; // 回首頁
-            </script>
-        <?php elseif ($_SESSION["user_role"] === "secretary"): ?>
-            <script>
-                alert('您沒有權限使用此頁面');
-                window.location.href = 'index.php'; // 回首頁
-            </script>
-        <?php elseif ($_SESSION["user_role"] === "student"): ?>
             <nav class="navbar">
                 <div class="navbar__container">
                     <a class="navbar__logo" href="index.php">產業實習平台</a>
                     <ul class="navbar__menu">
                         <li><a href="user.php"><?php echo $_SESSION["user_name"]."&nbsp;&nbsp;".$_SESSION["user_role"]; ?></a></li>
                         <li><a href="index.php">首頁</a></li>              
-                        <li><a href="upload.php">上傳報告書</a></li>
+                        <li><a href="announcement.php">上傳公告</a></li>
                         <li><a href="logout.php">登出</a></li>               
                     </ul>
                 </div>
             </nav>
-            <h1 class="title">上傳報告書</h1>
+            <h1 class="title">上傳公告</h1>
             <div class="form__container" >        
                 <form class="form" id="upload_form" action="upload.php" method="post" enctype="multipart/form-data">
                     <div class="form__input">
@@ -59,6 +49,16 @@
                 </form>        
             </div>
             <script src="js\script.js"></script>
+        <?php elseif ($_SESSION["user_role"] === "secretary"): ?>
+            <script>
+                alert('您沒有權限使用此頁面！');
+                window.location.href = 'index.php'; // 回首頁
+            </script>   
+        <?php elseif ($_SESSION["user_role"] === "student"): ?>
+            <script>
+                alert('您沒有權限使用此頁面！');
+                window.location.href = 'index.php'; // 回首頁
+            </script>           
         <?php endif; ?>
     <?php else: ?>
         <script>

@@ -14,7 +14,7 @@
     align-items: center;      /* 水平居中對齊 */
     justify-content: center;  /* 垂直居中 */
     width: 50%;
-    border: 5px double rgb(86, 31, 31);;  /* 設定 2px 寬度的黑色實線邊框 */
+    border: 5px double rgb(70, 70, 70);  /* 設定 2px 寬度的黑色實線邊框 */
     padding: 20px;           /* 增加內邊距，避免內容貼在邊框上 */
     margin-bottom: 20px;
     border-radius: 10px;     /* 圓角邊框 */
@@ -22,7 +22,7 @@
 /*註冊連結*/
 .form__container div span{
     font-weight: bold;
-    color: rgb(86, 31, 31);
+    color: rgb(70, 70, 70);
 }
 /*表格內元素*/
 .form__input {
@@ -30,18 +30,18 @@
     flex-direction: column; /* 讓 label 和 input 垂直排列 */
     margin-bottom: 15px;    /* 在每個輸入欄位之間增加距離 */
     width: 50%;
-    color: rgb(86, 31, 31);
+    color: rgb(70, 70, 70);
 }
 label {
     font-size: 20px; /* 調整 label 的字體大小 */
     font-weight: bold; /* 讓字體加粗 */
-    color: rgb(86, 31, 31);
+    color: rgb(70, 70, 70);
 }
 input, select {
     padding: 12px;  /* 增加 padding 讓輸入框變高 */
     font-size: 18px; /* 增加輸入框內文字的大小 */
     box-sizing: border-box;
-    border: 1px solid rgb(86, 31, 31);; /* 設定邊框寬度 */
+    border: 1px solid rgb(70, 70, 70); /* 設定邊框寬度 */
     border-radius: 4px; /* 添加圓角 */
 }
 .form__input input[type="file"] {
@@ -51,7 +51,7 @@ input, select {
     width: 100%; /* 設置寬度 */
     background: none; /* 移除背景 */
     font-size: 18px; /* 設置字體大小 */
-    color: rgb(86, 31, 31);
+    color: rgb(84, 84, 84);
 }
 .form__input input[type="file"]::file-selector-button {
     border: none; /* 隱藏邊框 */
@@ -69,7 +69,6 @@ input, select {
     padding: 10px; /* 內邊距 */
     border-radius: 4px; /* 圓角 */
     font-size: 16px; /* 字體大小 */
-    border: 1px solid rgb(86, 31, 31);; /* 設定邊框寬度 */
     border-radius: 4px; /* 添加圓角 */
 }
 
