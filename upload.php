@@ -46,6 +46,13 @@
                         <input type="text" id="article_title" name="article_title" placeholder="請輸入標題" required>
                     </div>
                     <div class="form__input">
+                        <label for="industry_input">產業種類</label>
+                        <div class="dropdown">
+                            <input type="text" id="industry_input" placeholder="搜尋或選取產業種類" required>
+                            <div id="dropdown_list" class="dropdown-list"></div>
+                        </div>
+                    </div>
+                    <div class="form__input">
                         <label for="article_content">內容</label>
                         <textarea id="article_content" name="article_content" placeholder="請輸入內容" required></textarea>
                     </div>

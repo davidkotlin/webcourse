@@ -56,7 +56,9 @@
                 <button class="sidebarBtn" id="editArticleBtn" type="button">修改上傳</button>
             </div>
             <div class="mainContent">
-                <h1 class="title">精選實習</h1>
+                <div class="showSection">
+                    <h1 class="title">精選文章</h1>
+                </div>
             </div>
         </div>    
     <?php else: ?>

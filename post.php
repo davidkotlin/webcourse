@@ -45,6 +45,13 @@
                         <input type="text" id="company_name" name="company_name" placeholder="請輸入企業名稱" required>
                     </div>
                     <div class="form__input">
+                        <label for="industry_input">產業種類</label>
+                        <div class="dropdown">
+                            <input type="text" id="industry_input" placeholder="搜尋或選取產業種類" required>
+                            <div id="dropdown_list" class="dropdown-list"></div>
+                        </div>
+                    </div>
+                    <div class="form__input">
                         <label for="start_date">開始時間</label>
                         <input type="date" id="start_date" name="start_date" required>
                     </div>

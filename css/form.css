@@ -71,4 +71,26 @@ input, select {
     font-size: 16px; /* 字體大小 */
     border-radius: 4px; /* 添加圓角 */
 }
-
+/*產業下拉選單*/
+.dropdown {
+    position: relative;
+}
+.dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    background-color: white;
+    display: none;
+    z-index: 1000;
+}
+.dropdown-list div {
+    padding: 8px;
+    cursor: pointer;
+}
+.dropdown-list div:hover {
+    background-color: #f0f0f0;
+}

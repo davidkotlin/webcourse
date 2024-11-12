@@ -31,7 +31,9 @@
                     <button class="sidebarBtn" id="editArticleBtn" type="button">修改上傳</button>
                 </div>
                 <div class="mainContent">
-                    <h1 class="title">實習資訊與報告書</h1>
+                    <div class="showSection">
+                        <h1 class="title">發佈的公告</h1>
+                    </div>
                 </div>
             </div>
         <?php elseif ($_SESSION["user_role"] === "secretary"): ?>
@@ -53,7 +55,9 @@
                     <button class="sidebarBtn" id="editArticleBtn" type="button">修改上傳</button>
                 </div>
                 <div class="mainContent">
-                    <h1 class="title">我刊登的實習資訊</h1>
+                    <div class="showSection">
+                        <h1 class="title">發佈的實習資訊</h1>
+                    </div>
                 </div>
             </div>
         <?php elseif ($_SESSION["user_role"] === "student"): ?>
@@ -75,7 +79,9 @@
                     <button class="sidebarBtn" id="editArticleBtn" type="button">修改上傳</button>
                 </div>
                 <div class="mainContent">
-                    <h1 class="title">我的報告書</h1>
+                    <div class="showSection">
+                        <h1 class="title">發佈的報告書</h1>
+                    </div>
                 </div>
             </div>
         <?php endif; ?>           

@@ -41,11 +41,18 @@
     </nav>
     <div class="main">
         <div class="sidebar">
-            <button class="sidebarBtn" id="type1Btn" type="button">種類一</button>
-            <button class="sidebarBtn" id="type2Btn" type="button">種類二</button>
-            <button class="sidebarBtn" id="type3Btn" type="button">種類三</button>
-            <button class="sidebarBtn" id="type4Btn" type="button">種類四</button>
-            <button class="sidebarBtn" id="type5Btn" type="button">種類五</button>
+            <button class="sidebarBtn" id="type1Btn" type="button">電子電機</button>
+            <button class="sidebarBtn" id="type2Btn" type="button">電腦周邊</button>
+            <button class="sidebarBtn" id="type3Btn" type="button">半導體</button>
+            <button class="sidebarBtn" id="type4Btn" type="button">通訊網路</button>
+            <button class="sidebarBtn" id="type5Btn" type="button">資訊服務</button>
+            <button class="sidebarBtn" id="type6Btn" type="button">金融保險</button>
+            <button class="sidebarBtn" id="type6Btn" type="button">生技醫療</button>
+            <button class="sidebarBtn" id="type6Btn" type="button">紡織纖維</button>
+            <button class="sidebarBtn" id="type6Btn" type="button">化學工業</button>
+            <button class="sidebarBtn" id="type6Btn" type="button">食品工業</button>
+            <button class="sidebarBtn" id="type6Btn" type="button">觀光餐旅</button>
+            <button class="sidebarBtn" id="type6Btn" type="button">其他</button>
         </div>
         <div class="mainContent">
             <div class="showSection">
