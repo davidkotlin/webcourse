@@ -10,7 +10,9 @@
     <title>產業實習平台</title>
 </head>
 <body>
-    <?php session_start(); ?>
+    <?php
+        session_start();
+    ?>
     <?php if ( isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ): ?>
         <?php if ($_SESSION["user_role"] === "administrator"): ?>        
             <script>

@@ -71,6 +71,36 @@ input, select {
     font-size: 16px; /* 字體大小 */
     border-radius: 4px; /* 添加圓角 */
 }
+/*會員管理表格*/
+.accountTable{
+    width: 50%; /* 表格寬度佔滿父元素 */
+    border-collapse: collapse; /* 移除儲存格間的邊距 */
+    border-radius: 4px;
+    margin: 20px 0; /* 添加上下邊距 */
+    font-size: 16px;
+    text-align: left; /* 預設文字靠左對齊 */
+    color: white;
+}
+th, td {
+    border: 3px solid rgb(70, 70, 70); /* 單元格邊框 */
+    padding: 10px; /* 單元格內距 */
+}
+.operation{
+    text-align: center;
+    padding: 10px 3px;
+}
+th {
+    background-color: #074f15; /* 表頭背景顏色 */
+    color: white; /* 表頭文字顏色 */
+}
+tr {
+    background-color: #41884c;
+    transition: background-color 0.3s ease;
+}
+tr:hover {
+    background-color: rgb(96, 96, 96); /* 滑鼠懸停效果 */
+}
+
 /*產業下拉選單*/
 .dropdown {
     position: relative;

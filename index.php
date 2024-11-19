@@ -9,7 +9,9 @@
     <title>產業實習平台</title>
 </head>
 <body>
-    <?php session_start(); ?>
+    <?php
+        session_start();
+    ?>
     <nav class="navbar">
         <div class="navbar__container">
             <a class="navbar__logo" href="index.php">產業實習平台</a>

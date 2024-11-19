@@ -1,9 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
     //偵測id
     const loginBtn = document.getElementById('loginBtn');
+    const registerBtn = document.getElementById('registerBtn');
     const userBtn = document.getElementById('userBtn');
     const selectBtn = document.getElementById('selectBtn');
     const editArticleBtn = document.getElementById('editArticleBtn');
+    const manageAccountBtn = document.getElementById('manageAccountBtn');
+    const editAccountBtn = document.getElementById('editAccountBtn');
+    const editEmailBtn = document.getElementById('editEmailBtn');
+    const editNameBtn = document.getElementById('editNameBtn');
+    const editPasswordBtn = document.getElementById('editPasswordBtn');
     const industryInput = document.getElementById("industry_input");
     const dropdownList = document.getElementById("dropdown_list");
     const industries = [
@@ -30,6 +36,20 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('loginForm').submit();
         });
     }
+    // 註冊
+    if (registerBtn) {
+        registerBtn.addEventListener('click', function() {
+            const account=document.getElementById("account");
+            const name=document.getElementById("name");
+            const password=document.getElementById("password");
+            const role=document.getElementById("role");
+            account.value=account.value.trim();
+            name.value=name.value.trim();
+            password.value=password.value.trim();
+            role.value=role.value.trim();
+            document.getElementById('registerForm').submit();
+        });
+    }
     //回到user.php
     if (userBtn) {
         userBtn.addEventListener('click', function() {
@@ -47,6 +67,12 @@ document.addEventListener('DOMContentLoaded', function() {
         editArticleBtn.addEventListener('click', function() {
             window.location.href = 'myArticle.php';
         });
+    }
+    //到managingAccount.php
+    if (manageAccountBtn) {
+        manageAccountBtn.addEventListener('click', function() {
+            window.location.href = 'managingAccount.php';
+        });  
     }
     //產業選擇選單
     if (industryInput) {
@@ -91,18 +117,181 @@ document.addEventListener('DOMContentLoaded', function() {
         } 
     }
     // 點擊其他區域時隱藏下拉選單
-    document.addEventListener("click", function(event) {
-        if (!industryInput.contains(event.target) && !dropdownList.contains(event.target)) {
-            dropdownList.style.display = "none";
-        }
-    });
-    // // 註冊
-    // const registerBtn = document.getElementById('registerBtn');
-    // if (registerBtn) {
-    //     registerBtn.addEventListener('click', function() {
-    //         document.getElementById('registerForm').submit();
-    //     });
-    // }
+    if (industryInput && dropdownList) {
+        document.addEventListener("click", function(event) {
+            if (!industryInput.contains(event.target) && !dropdownList.contains(event.target)) {
+                dropdownList.style.display = "none";
+            }
+        });
+    }
+    // 管理帳號
+    if (editAccountBtn) {
+        editAccountBtn.addEventListener('click', function() {
+            const account=document.getElementById("account");
+            const name=document.getElementById("name");
+            const role=document.getElementById("role");
+            account.value=account.value.trim();
+            name.value=name.value.trim();
+            role.value=role.value.trim();
+            if (!account.value) {
+                alert("請輸入會員電子郵件！");
+                account.focus();
+                return; // 阻止表单提交
+            }
+            if (!name.value) {
+                alert("請輸入會員名稱！");
+                name.focus();
+                return; // 阻止表单提交
+            }
+            if (!role.value) {
+                alert("請選擇會員角色！");
+                role.focus();
+                return; // 阻止表单提交
+            }
+            document.getElementById('editAccount_form').submit();
+        })
+    }
+    //使用者修改電子郵件
+    if (editEmailBtn) {
+        editEmailBtn.addEventListener('click', function() {
+            const userId = document.getElementById("userId").value;
+            const emailInput = document.getElementById("account");
+            const email = emailInput.value.trim();
+            console.log(email);
+            console.log(userId);
+            fetch("userRevise.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    userId: userId,
+                    userEmail: email
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text(); // 确保只解析 JSON 响应
+            })
+            .then(data => {
+            try {
+                const jsonData = JSON.parse(data); // 解析 JSON
+                if (jsonData.success) {
+                    alert("修改成功");
+                    window.location.href = "user.php";
+                } else {
+                    alert("修改失败：" + jsonData.message);
+                    window.location.href = "user.php";
+                }
+            } catch (error) {
+                console.error("JSON 解析失败：", error);
+            }
+            })
+            .catch(error => {
+                console.error("發生錯誤:", error);
+            });
+        })
+    }
+    //使用者修改名稱
+    if (editNameBtn) {
+        editNameBtn.addEventListener('click', function() {
+            const userId = document.getElementById("userId").value;
+            const nameInput = document.getElementById("name");
+            const name = nameInput.value.trim();
+            console.log(name);
+            console.log(userId);
+            fetch("userRevise.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    userId: userId,
+                    userName: name
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text(); // 确保只解析 JSON 响应
+            })
+            .then(data => {
+            try {
+                const jsonData = JSON.parse(data); // 解析 JSON
+                if (jsonData.success) {
+                    alert("修改成功");
+                    window.location.href = "user.php";
+                } else {
+                    alert("修改失败：" + jsonData.message);
+                    window.location.href = "user.php";
+                }
+            } catch (error) {
+                console.error("JSON 解析失败：", error);
+            }
+            })
+            .catch(error => {
+                console.error("發生錯誤:", error);
+            })
+        })
+    }
+    //使用者修改密碼
+    if (editPasswordBtn) {
+        editPasswordBtn.addEventListener('click', function() {
+            const userId = document.getElementById("userId").value;
+            const passwordInput = document.getElementById("password");
+            const password = passwordInput.value.trim();
+            console.log(password);
+            console.log(userId);
+            fetch("userRevise.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    userId: userId,
+                    userPassword: password
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text(); // 确保只解析 JSON 响应
+            })
+            .then(data => {
+            try {
+                const jsonData = JSON.parse(data); // 解析 JSON
+                if (jsonData.success) {
+                    alert("修改成功");
+                    window.location.href = "user.php";
+                } else {
+                    alert("修改失败：" + jsonData.message);
+                    window.location.href = "user.php";
+                }
+            } catch (error) {
+                console.error("JSON 解析失败：", error);
+            }
+            })
+            .catch(error => {
+                console.error("發生錯誤:", error);
+            })
+        })
+    }
+    //小視窗函數
+    window.openModal = function(accountId) {
+        document.getElementById("deleteModal").style.display = "flex";
+        document.getElementById("accountId").value = accountId;
+        document.getElementById("deleteForm").action = "deleteAccount.php?id=" + accountId;
+    }
+    window.closeModal = function() {
+        document.getElementById("deleteModal").style.display = "none";
+    }
+    window.confirmDelete = function() {
+        document.getElementById("deleteForm").submit();
+    }
     // // 上傳
     // const submitBtn = document.getElementById('submitBtn');
     // if (submitBtn) {

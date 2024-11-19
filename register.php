@@ -12,16 +12,57 @@
 <!-- php -->
 <?php 
     session_start(); // 設定session紀錄登入資訊
-    $host = 'localhost'; // 資料庫主機
-    $dbname = 'internship'; // 請替換為您的資料庫名稱
-    $username = 'root'; // 使用者名稱
-    $password = ''; // 如果沒有密碼，則留空
-    // 建立資料庫連線
-    $conn = new mysqli($host, $username, $password, $dbname);
-    // 檢查連線是否成功
-    if ($conn->connect_error) {
-        die("連線失敗: " . $conn->connect_error);
-    } 
+    try {
+        require_once("db.php");
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $account_email = $_POST["account"];
+            $account_name = $_POST["name"];
+            $account_password = $_POST["password"];
+            $account_role = $_POST["role"];
+            // 檢查 account_email 是否已經存在
+            $check_stmt = $conn->prepare("SELECT 1 FROM account_info WHERE account_email = ?");
+            $check_stmt->bind_param("s", $account_email);
+            $check_stmt->execute();
+            $check_stmt->store_result();//確認記錄是否存在，將結果暫存到緩存中
+            if ($check_stmt->num_rows > 0) {
+                // 如果 email 已存在，顯示提示並返回 login.php
+                echo "<script>alert('這個電子郵件已經註冊過'); window.location.href='login.php';</script>";
+                $check_stmt->close();
+            } 
+            else {
+                // 插入新帳戶
+                $check_stmt->close(); // 關閉檢查語句
+                $stmt = $conn->prepare("INSERT INTO account_info (account_email, account_name, account_password, account_role) VALUES (?, ?, ?, ?)");
+                $stmt->bind_param("ssss", $account_email, $account_name, $account_password, $account_role);
+                // 執行語句並檢查是否成功
+                if ($stmt->execute()) {
+                    // 获取插入记录的 ID
+                    $account_id = $conn->insert_id;
+                    $_SESSION['loggedin'] = true;
+                    $_SESSION['user_email'] = $account_email;
+                    $_SESSION['user_name'] = $account_name;
+                    $_SESSION['user_role'] = $account_role;
+                    // 重定向到首頁
+                    header("Location: index.php");
+                    exit();
+                } 
+                else {
+                    echo "<script>alert('註冊失敗'); window.location.href='register.php';</script>";
+                }
+                // 關閉語句
+                $stmt->close();
+            }
+        }
+    }
+    catch (Exception $e) {
+        echo 'Message: ' . $e->getMessage();
+    }
+    finally {
+        // 確保連接在最後關閉
+        if (isset($conn) && $conn->ping()) {
+            $conn->close();
+        }
+    }
 ?>
 <!--  -->
 <body>
@@ -70,6 +111,7 @@
             </div>
         </form>
     </div>
+    <script src="js/script.js"></script>
     <?php endif; ?>  
 </body>
 </html>

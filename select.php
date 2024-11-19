@@ -10,7 +10,9 @@
     <title>產業實習平台</title>
 </head>
 <body>
-<?php session_start(); ?>
+<?php 
+    session_start();
+?>
     <?php if ( isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ): ?>
         <?php if ($_SESSION["user_role"] === "administrator"): ?>
             <nav class="navbar">
@@ -24,6 +26,19 @@
                     </ul>
                 </div>
             </nav>
+            <div class="main">
+                <div class="sidebar">
+                    <button class="sidebarBtn" id="userBtn" type="button">個人資料</button>
+                    <button class="sidebarBtn" id="selectBtn" type="button">精選實習</button>
+                    <button class="sidebarBtn" id="editArticleBtn" type="button">修改上傳</button>
+                    <button class="sidebarBtn" id="manageAccountBtn" type="button">管理會員</button>
+                </div>
+                <div class="mainContent">
+                    <div class="showSection">
+                        <h1 class="title">精選文章</h1>
+                    </div>
+                </div>
+            </div>
         <?php elseif ($_SESSION["user_role"] === "secretary"): ?>
             <nav class="navbar">
                 <div class="navbar__container">
@@ -36,6 +51,18 @@
                     </ul>
                 </div>
             </nav>
+            <div class="main">
+                <div class="sidebar">
+                    <button class="sidebarBtn" id="userBtn" type="button">個人資料</button>
+                    <button class="sidebarBtn" id="selectBtn" type="button">精選實習</button>
+                    <button class="sidebarBtn" id="editArticleBtn" type="button">修改上傳</button>
+                </div>
+                <div class="mainContent">
+                    <div class="showSection">
+                        <h1 class="title">精選文章</h1>
+                    </div>
+                </div>
+            </div>
         <?php elseif ($_SESSION["user_role"] === "student"): ?>
             <nav class="navbar">
                 <div class="navbar__container">
@@ -48,19 +75,19 @@
                     </ul>
                 </div>
             </nav>
-        <?php endif; ?>
-        <div class="main">
-            <div class="sidebar">
-                <button class="sidebarBtn" id="userBtn" type="button">個人資料</button>
-                <button class="sidebarBtn" id="selectBtn" type="button">精選實習</button>
-                <button class="sidebarBtn" id="editArticleBtn" type="button">修改上傳</button>
-            </div>
-            <div class="mainContent">
-                <div class="showSection">
-                    <h1 class="title">精選文章</h1>
+            <div class="main">
+                <div class="sidebar">
+                    <button class="sidebarBtn" id="userBtn" type="button">個人資料</button>
+                    <button class="sidebarBtn" id="selectBtn" type="button">精選實習</button>
+                    <button class="sidebarBtn" id="editArticleBtn" type="button">修改上傳</button>
+                </div>
+                <div class="mainContent">
+                    <div class="showSection">
+                        <h1 class="title">精選文章</h1>
+                    </div>
                 </div>
             </div>
-        </div>    
+        <?php endif; ?>    
     <?php else: ?>
         <script>
             alert('您尚未登入！');
