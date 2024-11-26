@@ -38,6 +38,7 @@
                 if ($stmt->execute()) {
                     // 获取插入记录的 ID
                     $account_id = $conn->insert_id;
+                    $_SESSION['user_id'] = $account_id;
                     $_SESSION['loggedin'] = true;
                     $_SESSION['user_email'] = $account_email;
                     $_SESSION['user_name'] = $account_name;

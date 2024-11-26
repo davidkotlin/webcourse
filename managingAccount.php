@@ -21,7 +21,7 @@
                     <ul class="navbar__menu">
                         <li><a href="user.php"><?php echo $_SESSION["user_name"]."&nbsp;&nbsp;".$_SESSION["user_role"]; ?></a></li>
                         <li><a href="index.php">首頁</a></li>                
-                        <li><a href="announcement.php">上傳公告</a></li>
+                        <li><a href="upload.php">上傳公告</a></li>
                         <li><a href="logout.php">登出</a></li>                
                     </ul>
                 </div>
@@ -51,12 +51,14 @@
                                         $stmt->execute();
                                         $result = $stmt->get_result();
                                         while ($row = $result->fetch_array()) {
-                                            echo "<tr>";
-                                            echo "<td>" . $row["account_email"] . "</td>";
-                                            echo "<td>" . $row["account_name"] . "</td>";
-                                            echo "<td>" . $row["account_role"] . "</td>";
-                                            echo "<td class='operation'><a href='editAccount.php?id=" . $row["account_id"] . "'>編輯</a> | <a href='#' onclick='openModal(" . $row["account_id"] . ")'>刪除</a></td>";
-                                            echo "</tr>";
+                                            if ($row["account_role"] !== "administrator") {
+                                                echo "<tr>";
+                                                echo "<td>" . $row["account_email"] . "</td>";
+                                                echo "<td>" . $row["account_name"] . "</td>";
+                                                echo "<td>" . $row["account_role"] . "</td>";
+                                                echo "<td class='operation'><a href='editAccount.php?id=" . $row["account_id"] . "'>編輯</a> | <a href='#' onclick='openModal(" . $row["account_id"] . ")'>刪除</a></td>";
+                                                echo "</tr>";
+                                            }
                                         }
                                     } catch (Exception $e) {
                                         echo 'Message: ' . $e->getMessage();

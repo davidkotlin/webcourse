@@ -20,12 +20,12 @@
                     <?php if ($_SESSION["user_role"] === "administrator"): ?>
                         <li><a href="user.php"><?php echo $_SESSION["user_name"]."&nbsp;&nbsp;".$_SESSION["user_role"]; ?></a></li>
                         <li><a href="index.php">首頁</a></li>
-                        <li><a href="announcement.php">上傳公告</a></li>
+                        <li><a href="upload.php">上傳公告</a></li>
                         <li><a href="logout.php">登出</a></li>
                     <?php elseif ($_SESSION["user_role"] === "secretary"): ?>
                         <li><a href="user.php"><?php echo $_SESSION["user_name"]."&nbsp;&nbsp;".$_SESSION["user_role"]; ?></a></li>
                         <li><a href="index.php">首頁</a></li>
-                        <li><a href="post.php">上傳實習資訊</a></li>
+                        <li><a href="upload.php">上傳實習資訊</a></li>
                         <li><a href="logout.php">登出</a></li>
                     <?php elseif ($_SESSION["user_role"] === "student"): ?>                       
                         <li><a href="user.php"><?php echo $_SESSION["user_name"]."&nbsp;&nbsp;".$_SESSION["user_role"]; ?></a></li>
@@ -59,6 +59,11 @@
         <div class="mainContent">
             <div class="showSection">
             <h1 class="title">實習資訊</h1>
+            <div class="searchArea">
+                <label for="searchPosts">搜尋:</label>
+                <input type="text" id="searchPosts" placeholder="請輸入關鍵字">
+                <button class="btn" id="searchBtn" type="button">搜尋</button>
+            </div>
             <div class="container">
                 <div class="posts">
                     <section class="post"></section>

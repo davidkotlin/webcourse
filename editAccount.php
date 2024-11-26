@@ -19,7 +19,7 @@
                     <ul class="navbar__menu">
                         <li><a href="user.php"><?php echo $_SESSION["user_name"]."&nbsp;&nbsp;".$_SESSION["user_role"]; ?></a></li>
                         <li><a href="index.php">首頁</a></li>              
-                        <li><a href="announcement.php">上傳公告</a></li>
+                        <li><a href="upload.php">上傳公告</a></li>
                         <li><a href="logout.php">登出</a></li>               
                     </ul>
                 </div>
