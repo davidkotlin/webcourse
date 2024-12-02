@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
     <?php
        $host = 'localhost'; // 資料庫主機
        $dbname = 'internship'; // 請替換為您的資料庫名稱
@@ -18,5 +10,3 @@
            die("連線失敗: " . $conn->connect_error);
        } 
     ?>
-</body>
-</html>

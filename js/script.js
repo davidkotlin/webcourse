@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     //偵測id
     const loginBtn = document.getElementById('loginBtn');
     const registerBtn = document.getElementById('registerBtn');
+    const submitBtn = document.getElementById('submitBtn');
     const userBtn = document.getElementById('userBtn');
     const selectBtn = document.getElementById('selectBtn');
     const editArticleBtn = document.getElementById('editArticleBtn');
@@ -292,11 +293,25 @@ document.addEventListener('DOMContentLoaded', function() {
     window.confirmDelete = function() {
         document.getElementById("deleteForm").submit();
     }
-    // // 上傳
-    // const submitBtn = document.getElementById('submitBtn');
-    // if (submitBtn) {
-    //     submitBtn.addEventListener('click', function() {
-    //         document.getElementById('upload_form').submit();
-    //     });
-    // }
+    // 上傳
+    if (submitBtn) {
+        submitBtn.addEventListener('click', function() {
+            event.preventDefault(); // 防止表單默認提交行為
+            const imageInput = document.getElementById("image");
+            const fileInput = document.getElementById("file");
+            // 確保檔案元素存在並取出檔案物件
+            const image = imageInput && imageInput.files.length > 0 ? imageInput.files[0] : null;
+            const file = fileInput && fileInput.files.length > 0 ? fileInput.files[0] : null;
+
+            const article_title=document.getElementById("article_title").value.trim();
+            const industry_input=document.getElementById("industry_input").value.trim();
+            const article_content=document.getElementById("article_content").value.trim();
+            console.log(image);
+            console.log(article_title);
+            console.log(industry_input);
+            console.log(article_content);
+            console.log(file);
+            document.getElementById('upload_form').submit();
+        });
+    }
 });

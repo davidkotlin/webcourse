@@ -58,7 +58,15 @@
     background-blend-mode: overlay; /* 混合模式，使顏色疊加到圖片上 */
 }
 .container{
+    display: flex;           /* 使用 Flexbox 布局 */
+    flex-direction: column;  /* 縱向排列元素 */
+    align-items: center;     
     margin: 20px;
+    overflow: auto; /* 或 scroll*/
+    max-height: 600px; /* 設定高度限制，讓內容超出時出現滾動條*/
+    scrollbar-width: none;
+    box-sizing: border-box; /* 包括邊框和內距在寬度內 */
+    padding: 0 80px;        /* 給容器添加內距代替子元素的 margin */ 
 }
 .showSection{
     width: 100%;
@@ -121,4 +129,58 @@
 /*收尋框*/
 .searchArea{
     margin: 0 60px;
+}
+/*po文區*/
+.post{
+    width: 100%;
+    display: flex;
+    margin: 15px 30px;
+    padding: 10px;
+    border-radius: 6px;
+    gap: 20px;
+    color: rgb(70, 70, 70);
+    background-color: rgba(255, 255, 255, 0.5);
+}
+.leftArticlePart{
+    width: 30%;
+    display: flex;         /* 使用 Flexbox 對齊內容 */
+    justify-content: center; /* 水平居中圖片 */
+    align-items: center;   /* 垂直居中圖片 */
+
+}
+.rightArticlePart{
+    width: 65%;
+}
+.rightArticlePart h2{
+    font-size: 30px;
+}
+.rightArticlePart p{
+    margin: 7px 0;
+    font-size: 20px;
+}
+.rightArticlePart div{
+    margin: 7px 0;
+    font-size: 20px;
+    white-space: pre-wrap;
+}
+.followPart{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    width: 5%;
+}
+.editPart{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 5%;
+}
+.articleImage {
+    width: 100%;         /* 讓圖片寬度填滿父容器 */
+    height: auto;        /* 自動調整高度，保持比例 */
+    max-width: 300px;    /* 設定圖片的最大寬度 */
+    max-height: 300px;   /* 設定圖片的最大高度 */
+    object-fit: cover;   /* 確保圖片在範圍內裁剪而不變形 */
+    border-radius: 10px; /* 可選，讓圖片邊角圓滑 */
 }

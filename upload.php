@@ -12,6 +12,101 @@
 <body>
     <?php
         session_start();
+        try {
+            require_once("db.php");
+            if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                //分辨角色
+                // 圖片目錄與檔案目錄
+                $image_dir = 'uploads/images/';
+                $file_dir = 'uploads/files/';
+                if (!is_dir($image_dir)) mkdir($image_dir, 0777, true); // 如果目錄不存在則自動建立
+                if (!is_dir($file_dir)) mkdir($file_dir, 0777, true); // 如果目錄不存在則自動建立
+                // 處理圖片
+                $image_url = null; // 預設圖
+                if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+                    $image_path = $image_dir . uniqid('img_') . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+                    //uniqid()它會生成一個唯一的 ID，'img_' 是這個唯一 ID 的前綴
+                    //pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION): 這一部分取得上傳檔案的副檔名
+                    if (move_uploaded_file($_FILES['image']['tmp_name'], $image_path)) {
+                        //move_uploaded_file(): 這個函數會將檔案從暫存位置移動到你指定的目標位置
+                        //$_FILES['image']['tmp_name'] 是 PHP 系統為每個上傳的檔案暫時存放的路徑
+                        // $image_path 上面設定的目標路徑
+                        $image_url = $image_path; // 成功上傳，儲存圖片的相對路徑
+                    } else {
+                        if ($_SESSION['user_role'] === "administrator") {
+                            $image_url = 'img/announcement.png'; // 上傳失敗，保留為空值        
+                        }
+                        elseif ($_SESSION['user_role'] === "secretary") {
+                            $image_url = 'img/suitcase.png'; // 上傳失敗，保留為空值        
+                        }
+                        elseif ($_SESSION['user_role'] === "student") {
+                            $image_url = 'img/report.png'; // 上傳失敗，保留為空值        
+                        }
+                    }
+                }
+                else{
+                    if ($_SESSION['user_role'] === "administrator") {
+                        $image_url = 'img/announcement.png'; // 上傳失敗，保留為空值        
+                    }
+                    elseif ($_SESSION['user_role'] === "secretary") {
+                        $image_url = 'img/suitcase.png'; // 上傳失敗，保留為空值        
+                    }
+                    elseif ($_SESSION['user_role'] === "student") {
+                        $image_url = 'img/report.png'; // 上傳失敗，保留為空值        
+                    }
+                }
+                // 處理附加檔案
+                $file_url = null; // 預設為空值
+                if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
+                    $file_path = $file_dir . uniqid('file_') . '.' . pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+                    if (move_uploaded_file($_FILES['file']['tmp_name'], $file_path)) {
+                        $file_url = $file_path; // 成功上傳，儲存檔案的相對路徑
+                    } else {
+                        $file_url = null; // 上傳失敗，保留為空值
+                    }
+                }
+                // 獲取其他表單數據
+                $account_id = $_SESSION['user_id'];
+                $article_id = $account_id . uniqid($_SESSION['user_email']);
+                $article_title = $_POST['article_title'];
+                $industry_input = $_POST['industry_input'];
+                $article_content =  $_POST['article_content'];
+                
+                if ($_SESSION['user_role'] === "administrator") {
+                    $article_type = 'announcement';
+                }
+                elseif ($_SESSION['user_role'] === "secretary") {
+                    $article_type = 'internship';
+                }
+                elseif ($_SESSION['user_role'] === "student") {
+                    $article_type = 'report';
+                }
+                $company_name = isset($_POST['company_name']) ? $_POST['company_name'] : null;
+                $start_date = isset($_POST['start_date']) ? $_POST['start_date'] : null;
+                $end_date = isset($_POST['end_date']) ? $_POST['end_date'] : null;
+                // 將數據插入到資料庫中
+                $stmt = $conn->prepare("INSERT INTO articles (article_id, title, content, article_type, industry, company_name, start_date, end_date, attachment_url, image_url, account_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt->bind_param("ssssssssssi", $article_id, $article_title, $article_content, $article_type, $industry_input, $company_name, $start_date, $end_date, $file_url, $image_url, $account_id);
+                if ($stmt->execute()) {
+                    header("Location: index.php");
+                    exit();
+                }
+                else {
+                    echo "<script>alert('上傳失敗'); window.location.href='upload.php';</script>";
+                }
+                // 關閉語句
+                $stmt->close();
+            }
+        }
+        catch (Exception $e) {
+            echo 'Message: ' . $e->getMessage();
+        }
+        finally {
+            // 確保連接在最後關閉
+            if (isset($conn) && $conn->ping()) {
+                $conn->close();
+            }
+        }
     ?>
     <?php if ( isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ): ?>
         <?php if ($_SESSION["user_role"] === "administrator"): ?>        
@@ -40,7 +135,7 @@
                     <div class="form__input">
                         <label for="industry_input">產業種類</label>
                         <div class="dropdown">
-                            <input type="text" id="industry_input" placeholder="搜尋或選取產業種類" required>
+                            <input type="text" id="industry_input" name="industry_input" placeholder="搜尋或選取產業種類" required>
                             <div id="dropdown_list" class="dropdown-list"></div>
                         </div>
                     </div>
@@ -88,7 +183,7 @@
                     <div class="form__input">
                         <label for="industry_input">產業種類</label>
                         <div class="dropdown">
-                            <input type="text" id="industry_input" placeholder="搜尋或選取產業種類" required>
+                            <input type="text" id="industry_input" name="industry_input" placeholder="搜尋或選取產業種類" required>
                             <div id="dropdown_list" class="dropdown-list"></div>
                         </div>
                     </div>
@@ -140,7 +235,7 @@
                     <div class="form__input">
                         <label for="industry_input">產業種類</label>
                         <div class="dropdown">
-                            <input type="text" id="industry_input" placeholder="搜尋或選取產業種類" required>
+                            <input type="text" id="industry_input" name="industry_input" placeholder="搜尋或選取產業種類" required>
                             <div id="dropdown_list" class="dropdown-list"></div>
                         </div>
                     </div>
