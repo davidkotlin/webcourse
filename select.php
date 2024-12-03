@@ -36,6 +36,59 @@
                 <div class="mainContent">
                     <div class="showSection">
                         <h1 class="title">精選文章</h1>
+                        <div class="searchArea">
+                            <label for="searchPosts">搜尋:</label>
+                            <input type="text" id="searchPosts" placeholder="請輸入關鍵字">
+                            <button class="btn" id="searchBtn" type="button">搜尋</button>
+                        </div>
+                        <div class="container">
+                            <?php
+                                try{
+                                    require_once("db.php");
+                                    $stmt = $conn->prepare("SELECT * FROM articles INNER JOIN follows ON follows.article_id = articles.article_id WHERE follows.account_id = $_SESSION[user_id] ORDER BY follows.created_at DESC");
+                                    $stmt ->execute();
+                                    $result = $stmt->get_result();
+                                    while ($row = $result->fetch_array()){
+                                        echo "<section class='post'>";
+                                        echo "<div class='leftArticlePart'>";                             
+                                        echo "<img class='articleImage' src=" . $row["image_url"] . ">";
+                                        echo "</div>";
+                                        echo "<div class='rightArticlePart'>";
+                                        echo "<h2>" . $row["title"] . "</h2>";
+                                        echo "<div>" . $row["content"] . "</div>";
+                                        echo "<p>產業類別：" . $row["industry"] . "</p>";
+                                        if (isset($row["company_name"])) {
+                                            echo "<p>公司名稱：" . $row["company_name"] . "</p>";
+                                        }
+                                        if (isset($row["start_date"]) && $row["start_date"] !== "0000-00-00") {
+                                            echo "<p>開始日期：" . $row["start_date"] . "</p>";
+                                        }
+                                        elseif (isset($row["start_date"]) && $row["start_date"] === "0000-00-00") {
+                                            echo "<p>開始日期：未公佈 </p>";
+                                        }
+                                        if (isset($row["end_date"]) && $row["end_date"] !== "0000-00-00") {
+                                            echo "<p>結束日期：" . $row["end_date"] . "</p>";
+                                        }
+                                        elseif (isset($row["end_date"]) && $row["end_date"] === "0000-00-00") {
+                                            echo "<p>結束日期：未公佈 </p>";
+                                        }
+                                        if (isset($row["attachment_url"])) {
+                                            echo "<p><a href='" . $row["attachment_url"] . "' download>下載附加檔案</a></p>";
+                                        }
+                                        echo "<p>發佈時間：" . $row["created_at"] . "</p>";
+                                        echo "<input type='hidden' id='articleId' value='" . $row["article_id"] . "'>";
+                                        echo "</div>";
+                                        echo "</section>";
+                                    }
+                                } catch (Exception $e) {
+                                    echo 'Message: ' . $e->getMessage();
+                                } finally {
+                                    if (isset($conn) && $conn->ping()) {
+                                        $conn->close();
+                                    }
+                                }
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -60,6 +113,59 @@
                 <div class="mainContent">
                     <div class="showSection">
                         <h1 class="title">精選文章</h1>
+                        <div class="searchArea">
+                            <label for="searchPosts">搜尋:</label>
+                            <input type="text" id="searchPosts" placeholder="請輸入關鍵字">
+                            <button class="btn" id="searchBtn" type="button">搜尋</button>
+                        </div>
+                        <div class="container">
+                            <?php
+                                try{
+                                    require_once("db.php");
+                                    $stmt = $conn->prepare("SELECT * FROM articles INNER JOIN follows ON follows.article_id = articles.article_id WHERE follows.account_id = $_SESSION[user_id] ORDER BY follows.created_at DESC");
+                                    $stmt ->execute();
+                                    $result = $stmt->get_result();
+                                    while ($row = $result->fetch_array()){
+                                        echo "<section class='post'>";
+                                        echo "<div class='leftArticlePart'>";                             
+                                        echo "<img class='articleImage' src=" . $row["image_url"] . ">";
+                                        echo "</div>";
+                                        echo "<div class='rightArticlePart'>";
+                                        echo "<h2>" . $row["title"] . "</h2>";
+                                        echo "<div>" . $row["content"] . "</div>";
+                                        echo "<p>產業類別：" . $row["industry"] . "</p>";
+                                        if (isset($row["company_name"])) {
+                                            echo "<p>公司名稱：" . $row["company_name"] . "</p>";
+                                        }
+                                        if (isset($row["start_date"]) && $row["start_date"] !== "0000-00-00") {
+                                            echo "<p>開始日期：" . $row["start_date"] . "</p>";
+                                        }
+                                        elseif (isset($row["start_date"]) && $row["start_date"] === "0000-00-00") {
+                                            echo "<p>開始日期：未公佈 </p>";
+                                        }
+                                        if (isset($row["end_date"]) && $row["end_date"] !== "0000-00-00") {
+                                            echo "<p>結束日期：" . $row["end_date"] . "</p>";
+                                        }
+                                        elseif (isset($row["end_date"]) && $row["end_date"] === "0000-00-00") {
+                                            echo "<p>結束日期：未公佈 </p>";
+                                        }
+                                        if (isset($row["attachment_url"])) {
+                                            echo "<p><a href='" . $row["attachment_url"] . "' download>下載附加檔案</a></p>";
+                                        }
+                                        echo "<p>發佈時間：" . $row["created_at"] . "</p>";
+                                        echo "<input type='hidden' id='articleId' value='" . $row["article_id"] . "'>";
+                                        echo "</div>";
+                                        echo "</section>";
+                                    }
+                                } catch (Exception $e) {
+                                    echo 'Message: ' . $e->getMessage();
+                                } finally {
+                                    if (isset($conn) && $conn->ping()) {
+                                        $conn->close();
+                                    }
+                                }
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -84,6 +190,59 @@
                 <div class="mainContent">
                     <div class="showSection">
                         <h1 class="title">精選文章</h1>
+                        <div class="searchArea">
+                            <label for="searchPosts">搜尋:</label>
+                            <input type="text" id="searchPosts" placeholder="請輸入關鍵字">
+                            <button class="btn" id="searchBtn" type="button">搜尋</button>
+                        </div>
+                        <div class="container">
+                            <?php
+                                try{
+                                    require_once("db.php");
+                                    $stmt = $conn->prepare("SELECT * FROM articles INNER JOIN follows ON follows.article_id = articles.article_id WHERE follows.account_id = $_SESSION[user_id] ORDER BY follows.created_at DESC");
+                                    $stmt ->execute();
+                                    $result = $stmt->get_result();
+                                    while ($row = $result->fetch_array()){
+                                        echo "<section class='post'>";
+                                        echo "<div class='leftArticlePart'>";                             
+                                        echo "<img class='articleImage' src=" . $row["image_url"] . ">";
+                                        echo "</div>";
+                                        echo "<div class='rightArticlePart'>";
+                                        echo "<h2>" . $row["title"] . "</h2>";
+                                        echo "<div>" . $row["content"] . "</div>";
+                                        echo "<p>產業類別：" . $row["industry"] . "</p>";
+                                        if (isset($row["company_name"])) {
+                                            echo "<p>公司名稱：" . $row["company_name"] . "</p>";
+                                        }
+                                        if (isset($row["start_date"]) && $row["start_date"] !== "0000-00-00") {
+                                            echo "<p>開始日期：" . $row["start_date"] . "</p>";
+                                        }
+                                        elseif (isset($row["start_date"]) && $row["start_date"] === "0000-00-00") {
+                                            echo "<p>開始日期：未公佈 </p>";
+                                        }
+                                        if (isset($row["end_date"]) && $row["end_date"] !== "0000-00-00") {
+                                            echo "<p>結束日期：" . $row["end_date"] . "</p>";
+                                        }
+                                        elseif (isset($row["end_date"]) && $row["end_date"] === "0000-00-00") {
+                                            echo "<p>結束日期：未公佈 </p>";
+                                        }
+                                        if (isset($row["attachment_url"])) {
+                                            echo "<p><a href='" . $row["attachment_url"] . "' download>下載附加檔案</a></p>";
+                                        }
+                                        echo "<p>發佈時間：" . $row["created_at"] . "</p>";
+                                        echo "<input type='hidden' id='articleId' value='" . $row["article_id"] . "'>";
+                                        echo "</div>";
+                                        echo "</section>";
+                                    }
+                                } catch (Exception $e) {
+                                    echo 'Message: ' . $e->getMessage();
+                                } finally {
+                                    if (isset($conn) && $conn->ping()) {
+                                        $conn->close();
+                                    }
+                                }
+                            ?>
+                        </div>
                     </div>
                 </div>
             </div>

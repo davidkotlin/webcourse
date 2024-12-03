@@ -99,11 +99,27 @@
                                         echo "<p><a href='" . $row["attachment_url"] . "' download>下載附加檔案</a></p>";
                                     }
                                     echo "<p>發佈時間：" . $row["created_at"] . "</p>";
+                                    echo "<input type='hidden' id='articleId' value='" . $row["article_id"] . "'>";
                                     echo "</div>";
                                     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ) {
-                                        echo "<div class='followPart'>";
-                                        echo "<button class='btn' id='followBtn' type='button'>關注</button>";
-                                        echo "</div>"; 
+                                        //檢查是否已關注
+                                        $checkFollowStmt = $conn->prepare("SELECT * FROM follows WHERE account_id = ? AND article_id = ?");
+                                        $checkFollowStmt->bind_param("is", $_SESSION['user_id'], $row["article_id"]);
+                                        $checkFollowStmt->execute();
+                                        $checkFollowResult = $checkFollowStmt->get_result();
+                                        //使用者已關注
+                                        if ($checkFollowResult->num_rows > 0) {
+                                            echo "<div class='unfollowPart' id='followContainer-{$row['article_id']}'>";
+                                            echo "<button class='btn' id='unfollowBtn-{$row['article_id']}' type='button'>取消關注</button>";
+                                            echo "</div>";
+                                        }
+                                        //使用者未關注
+                                        else {
+                                            echo "<div class='followPart' id='followContainer-{$row['article_id']}'>";
+                                            echo "<button class='btn' id='followBtn-{$row['article_id']}' type='button'>關注</button>";
+                                            echo "</div>";
+                                        }
+                                        $checkFollowStmt->close(); 
                                     }
                                     echo "</section>";
                                 }    
@@ -119,5 +135,6 @@
             </div>
         </div>       
     </div>
+    <script src="js/script.js"></script>
 </body>
 </html>

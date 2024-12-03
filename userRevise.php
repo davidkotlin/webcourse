@@ -3,7 +3,6 @@ ob_start(); // 开启输出缓冲区
 session_start();
 try {
     require_once("db.php");
-
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $json = file_get_contents('php://input');
         $data = json_decode($json, true);

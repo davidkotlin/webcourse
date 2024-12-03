@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const editEmailBtn = document.getElementById('editEmailBtn');
     const editNameBtn = document.getElementById('editNameBtn');
     const editPasswordBtn = document.getElementById('editPasswordBtn');
+    const container = document.querySelector('.container');
     const industryInput = document.getElementById("industry_input");
     const dropdownList = document.getElementById("dropdown_list");
     const industries = [
@@ -314,4 +315,85 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('upload_form').submit();
         });
     }
+    //關注
+    if (container){
+        //事件委派
+        container.addEventListener('click', (event) => {
+            const target = event.target;
+        
+            // 判斷點擊的是否是關注或取消關注按鈕
+            if (target.id.startsWith('followBtn-')) {
+                const article_id = target.id.split('-')[1];
+                follow(article_id, target.id);
+            } else if (target.id.startsWith('unfollowBtn-')) {
+                const article_id = target.id.split('-')[1];
+                unfollow(article_id, target.id);
+            }
+        });
+    }
+    // Follow 函數
+    function follow(article_id, followBtnId) {
+    console.log("Follow:", followBtnId);
+    console.log("Article ID:", article_id);
+    fetch("follow.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            article_id: article_id
+        })
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json(); // 確保只解析 JSON 響應
+        })
+        .then(jsonData => {
+            if (jsonData.success) {
+                const followContainer = document.getElementById(`followContainer-${article_id}`);
+                if (followContainer) {
+                    followContainer.innerHTML = `
+                        <button class='btn' id='unfollowBtn-${article_id}' type='button'>取消關注</button>
+                    `;
+                }
+            } else {
+                alert("Follow 失敗：" + jsonData.message);
+            }
+        })
+        .catch(error => {
+            console.error("Follow 發生錯誤:", error);
+        });
+    }
+    // Unfollow 函數
+    function unfollow(article_id, unfollowBtnId) {
+        console.log("Unfollow:", unfollowBtnId);
+        console.log("Article ID:", article_id);
+        fetch("unfollow.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                article_id: article_id
+            })
+        })
+            .then(response => response.json())
+            .then(jsonData => {
+                if (jsonData.success) {
+                    const followContainer = document.getElementById(`followContainer-${article_id}`);
+                    if (followContainer) {
+                        followContainer.innerHTML = `
+                            <button class='btn' id='followBtn-${article_id}' type='button'>關注</button>
+                        `;
+                    }
+                } else {
+                    alert("取消關注失敗：" + jsonData.message);
+                }
+            })
+            .catch(error => {
+                console.error("取消關注發生錯誤:", error);
+            });
+    }     
 });
