@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const userBtn = document.getElementById('userBtn');
     const selectBtn = document.getElementById('selectBtn');
     const editArticleBtn = document.getElementById('editArticleBtn');
+    const reviseArticleBtn = document.getElementById('reviseArticleBtn');
     const manageAccountBtn = document.getElementById('manageAccountBtn');
     const editAccountBtn = document.getElementById('editAccountBtn');
     const editEmailBtn = document.getElementById('editEmailBtn');
@@ -64,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = 'select.php';
         });
     }
-    //到upload.php
+    //到myArticle.php.php
     if (editArticleBtn) {
         editArticleBtn.addEventListener('click', function() {
             window.location.href = 'myArticle.php';
@@ -296,24 +297,38 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     // 上傳
     if (submitBtn) {
-        submitBtn.addEventListener('click', function() {
+        submitBtn.addEventListener('click', function(event) {
             event.preventDefault(); // 防止表單默認提交行為
-            const imageInput = document.getElementById("image");
-            const fileInput = document.getElementById("file");
-            // 確保檔案元素存在並取出檔案物件
-            const image = imageInput && imageInput.files.length > 0 ? imageInput.files[0] : null;
-            const file = fileInput && fileInput.files.length > 0 ? fileInput.files[0] : null;
-
-            const article_title=document.getElementById("article_title").value.trim();
-            const industry_input=document.getElementById("industry_input").value.trim();
-            const article_content=document.getElementById("article_content").value.trim();
-            console.log(image);
-            console.log(article_title);
-            console.log(industry_input);
-            console.log(article_content);
-            console.log(file);
-            document.getElementById('upload_form').submit();
+            handleFormSubmit('upload_form');
         });
+    }
+    //修改文章
+    if (reviseArticleBtn){
+        reviseArticleBtn.addEventListener("click",function(event) {
+            event.preventDefault();
+            handleFormSubmit("revise_form");
+        })
+    }
+    //文章修改與上船函數
+    function handleFormSubmit(formId) {
+        const form = document.getElementById(formId);
+        const imageInput = document.getElementById("image");
+        const fileInput = document.getElementById("file");
+        // 確保檔案元素存在並取出檔案物件
+        const image = imageInput && imageInput.files.length > 0 ? imageInput.files[0] : null;
+        const file = fileInput && fileInput.files.length > 0 ? fileInput.files[0] : null;
+        const article_title=document.getElementById("article_title").value.trim();
+        const industry_input=document.getElementById("industry_input").value.trim();
+        const article_content=document.getElementById("article_content").value.trim();
+        document.getElementById("article_title").value = article_title;
+        document.getElementById("industry_input").value = industry_input;
+        document.getElementById("article_content").value = article_content;
+        console.log(image)
+        console.log(file)
+        console.log(article_title)
+        console.log(industry_input)
+        console.log(article_content)
+        form.submit();
     }
     //關注
     if (container){

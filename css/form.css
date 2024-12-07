@@ -128,3 +128,10 @@ tr:hover {
 .dropdown-list div:hover {
     background-color: #f0f0f0;
 }
+/*就圖片名稱預覽*/
+.old-data{ 
+    color: rgba(84, 84, 84, 0.75);
+    font-size: 15px;
+    margin: 0 20px;
+    margin-top: 5px;
+}

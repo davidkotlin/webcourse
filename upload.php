@@ -22,7 +22,7 @@
                 if (!is_dir($image_dir)) mkdir($image_dir, 0777, true); // 如果目錄不存在則自動建立
                 if (!is_dir($file_dir)) mkdir($file_dir, 0777, true); // 如果目錄不存在則自動建立
                 // 處理圖片
-                $image_url = null; // 預設圖
+                $image_url = null; 
                 if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
                     $image_path = $image_dir . uniqid('img_') . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
                     //uniqid()它會生成一個唯一的 ID，'img_' 是這個唯一 ID 的前綴
@@ -148,7 +148,7 @@
                         <input type="file" id="file" name="file" >
                     </div>
                     <div class="btn__margin">
-                        <button class="btn" id="submitBtn" type="submit">上傳</button>
+                        <button class="btn" id="submitBtn" type="button">上傳</button>
                     </div>    
                 </form>        
             </div>
@@ -248,7 +248,7 @@
                         <input type="file" id="file" name="file" >
                     </div>
                     <div class="btn__margin">
-                        <button class="btn" id="submitBtn" type="submit">上傳</button>
+                        <button class="btn" id="submitBtn" type="button">上傳</button>
                     </div>    
                 </form>        
             </div>

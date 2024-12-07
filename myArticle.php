@@ -79,9 +79,9 @@
                                             echo "</div>";
                                             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ) {
                                                 echo "<div class='editPart'>";
-                                                echo "<button class='btn' id='followBtn' type='button'>修改</button>";
+                                                echo "<a href='reviseArticle.php?article_id=" . $row["article_id"] . "'><button class='btn' type='button'>修改</button></a>";
                                                 echo "<br>";
-                                                echo "<button class='btn' id='followBtn' type='button'>刪除</button>";
+                                                echo "<a href='deleteArticle.php?article_id=" . $row["article_id"] . "'><button class='btn' type='button'>刪除</button></a>";
                                                 echo "</div>"; 
                                             }
                                             echo "</section>";
@@ -159,12 +159,13 @@
                                                 echo "<p><a href='" . $row["attachment_url"] . "' download>下載附加檔案</a></p>";
                                             }
                                             echo "<p>發佈時間：" . $row["created_at"] . "</p>";
+                                            echo "<input type='hidden' id='articleId' value='" . $row["article_id"] . "'>";
                                             echo "</div>";
                                             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ) {
                                                 echo "<div class='editPart'>";
-                                                echo "<button class='btn' id='followBtn' type='button'>修改</button>";
+                                                echo "<a href='reviseArticle.php?article_id=" . $row["article_id"] . "'><button class='btn' type='button'>修改</button></a>";
                                                 echo "<br>";
-                                                echo "<button class='btn' id='followBtn' type='button'>刪除</button>";
+                                                echo "<a href='deleteArticle.php?article_id=" . $row["article_id"] . "'><button class='btn' type='button'>刪除</button></a>";
                                                 echo "</div>"; 
                                             }
                                             echo "</section>";
@@ -182,6 +183,7 @@
                 </div>
             </div>
         <?php elseif ($_SESSION["user_role"] === "student"): ?>
+            
             <nav class="navbar">
                 <div class="navbar__container">
                     <a class="navbar__logo" href="index.php">產業實習平台</a>
@@ -242,12 +244,13 @@
                                                 echo "<p><a href='" . $row["attachment_url"] . "' download>下載附加檔案</a></p>";
                                             }
                                             echo "<p>發佈時間：" . $row["created_at"] . "</p>";
+                                            echo "<input type='hidden' id='articleId' value='" . $row["article_id"] . "'>";
                                             echo "</div>";
                                             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] ) {
                                                 echo "<div class='editPart'>";
-                                                echo "<button class='btn' id='followBtn' type='button'>修改</button>";
+                                                echo "<a href='reviseArticle.php?article_id=" . $row["article_id"] . "'><button class='btn' type='button'>修改</button></a>";
                                                 echo "<br>";
-                                                echo "<button class='btn' id='followBtn' type='button'>刪除</button>";
+                                                echo "<a href='deleteArticle.php?article_id=" . $row["article_id"] . "'><button class='btn' type='button'>刪除</button></a>";
                                                 echo "</div>"; 
                                             }
                                             echo "</section>";

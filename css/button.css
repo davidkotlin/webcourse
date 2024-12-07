@@ -45,3 +45,9 @@
 .sidebarBtn:hover {
     background-color: #41884c;
 }
+.submitOrCancel{
+    display: flex;
+    justify-content: space-around;
+    width: 15%;
+    margin: 10px 0;
+}
