@@ -42,27 +42,27 @@
         </div>
     </nav>
     <div class="main">
-        <div class="sidebar">
-            <button class="sidebarBtn" id="type1Btn" type="button">電子電機</button>
-            <button class="sidebarBtn" id="type2Btn" type="button">電腦周邊</button>
-            <button class="sidebarBtn" id="type3Btn" type="button">半導體</button>
-            <button class="sidebarBtn" id="type4Btn" type="button">通訊網路</button>
-            <button class="sidebarBtn" id="type5Btn" type="button">資訊服務</button>
-            <button class="sidebarBtn" id="type6Btn" type="button">金融保險</button>
-            <button class="sidebarBtn" id="type6Btn" type="button">生技醫療</button>
-            <button class="sidebarBtn" id="type6Btn" type="button">紡織纖維</button>
-            <button class="sidebarBtn" id="type6Btn" type="button">化學工業</button>
-            <button class="sidebarBtn" id="type6Btn" type="button">食品工業</button>
-            <button class="sidebarBtn" id="type6Btn" type="button">觀光餐旅</button>
-            <button class="sidebarBtn" id="type6Btn" type="button">其他</button>
+        <div class="sidebar" id="sidebar">
+            <button class="sidebarFilterBtn" data-page="ElectronicElectrical" type="button">電子電機</button>
+            <button class="sidebarFilterBtn" data-page="ComputerPeripherals" type="button">電腦周邊</button>
+            <button class="sidebarFilterBtn" data-page="Semiconductors" type="button">半導體</button>
+            <button class="sidebarFilterBtn" data-page="CommunicationNetworks" type="button">通訊網路</button>
+            <button class="sidebarFilterBtn" data-page="InformationServices" type="button">資訊服務</button>
+            <button class="sidebarFilterBtn" data-page="FinanceInsurance" type="button">金融保險</button>
+            <button class="sidebarFilterBtn" data-page="BiotechnologyMedical" type="button">生技醫療</button>
+            <button class="sidebarFilterBtn" data-page="TextilesFibers" type="button">紡織纖維</button>
+            <button class="sidebarFilterBtn" data-page="Chemical" type="button">化學工業</button>
+            <button class="sidebarFilterBtn" data-page="Food" type="button">食品工業</button>
+            <button class="sidebarFilterBtn" data-page="Tourism" type="button">觀光餐旅</button>
+            <button class="sidebarFilterBtn" data-page="Others" type="button">其他</button>
         </div>
         <div class="mainContent">
             <div class="showSection">
                 <h1 class="title">實習資訊</h1>
                 <div class="searchArea">
-                    <label for="searchPosts">搜尋:</label>
-                    <input type="text" id="searchPosts" placeholder="請輸入關鍵字">
-                    <button class="btn" id="searchBtn" type="button">搜尋</button>
+                    <label for="searchInput">搜尋:</label>
+                    <input type="text" id="searchInput" name="searchInput" placeholder="請輸入文章名稱或企業名稱">
+                    <button class="btn" id="searchBtn" data-page="index" type="button">搜尋</button>
                 </div>
                 <div class="container">
                         <?php

@@ -13,6 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const editNameBtn = document.getElementById('editNameBtn');
     const editPasswordBtn = document.getElementById('editPasswordBtn');
     const container = document.querySelector('.container');
+    //搜尋與篩選
+    const searchBtn = document.getElementById('searchBtn');
+    const sidebar = document.getElementById('sidebar');
+    //產業輸入下拉選單
     const industryInput = document.getElementById("industry_input");
     const dropdownList = document.getElementById("dropdown_list");
     const industries = [
@@ -411,4 +415,154 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error("取消關注發生錯誤:", error);
             });
     }     
+    //搜尋
+    if (searchBtn){
+        searchBtn.addEventListener("click",function() {
+            const searchInput = document.getElementById("searchInput").value;
+            const pageType = searchBtn.dataset.page;
+            if (!searchInput) {
+                if (pageType === "index"){
+                    window.location.href = "index.php";
+                    return;
+                }
+                else if (pageType === "myArticle"){
+                    window.location.href = "myArticle.php";
+                    return;
+                }
+                else if (pageType === "select"){
+                    window.location.href = "select.php";
+                    return;
+                }
+                else{
+                    alert("發生錯誤");
+                    return;
+                }   
+            }
+            fetch("search.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    searchInput: searchInput
+                })
+            })
+            .then(response => response.json())
+            .then(jsonData => {
+                if (jsonData.success) {
+                    const articles = jsonData.searchResults;
+                    filterArticles(articles, pageType);              
+                } else {
+                    alert("搜尋失敗：" + jsonData.message);
+                }
+            })
+            .catch(error => {
+                console.error("搜尋發生錯誤:", error);
+            });
+        }) 
+    }
+    //sidebar篩選
+    if (sidebar){
+        sidebar.addEventListener("click",function(event) {
+            const button = event.target;
+            if (button.classList.contains("sidebarFilterBtn")) {
+                const pageType = button.dataset.page;
+                console.log(pageType);
+                // fetch("type.php", {
+                //     method: "POST",
+                //     headers: {
+                //         "Content-Type": "application/json"
+                //     }
+                // })
+                // .then(response => response.json())
+                // .then(jsonData => {
+                //     if (jsonData.success) {
+                //         const articles = jsonData.searchResults;
+                //         filterArticles(articles, pageType);              
+                //     } else {
+                //         alert("篩選失敗：" + jsonData.message);
+                //     }
+                // })
+                // .catch(error => {
+                //     console.error("篩選發生錯誤:", error);
+                // });
+            }
+        });
+    }
+    //首頁篩選變化函數
+    function filterArticles(articles, pageType) {
+        const container = document.querySelector(".container");
+        container.innerHTML = "";
+        //顯示搜尋清單
+        for (let i = 0; i < articles.length; i++) {
+        const article = articles[i];
+        const articleElement = document.createElement("section");
+        articleElement.classList.add("post");
+        // 初始化 HTML 字串
+        let innerHTML = `
+            <div class='leftArticlePart'>
+                <img class='articleImage' src="${article.image_url || 'default-image.jpg'}" alt="Article Image">
+            </div>
+            <div class='rightArticlePart'>
+                <h2>${article.title || '未提供標題'}</h2>
+                <div>${article.content || '未提供內容'}</div>
+        `;
+        // 檢查並添加產業類別
+        if (article.industry) {
+            innerHTML += `<p>產業類別：${article.industry}</p>`;
+        }
+        // 檢查並添加公司名稱
+        if (article.company_name) {
+            innerHTML += `<p>公司名稱：${article.company_name}</p>`;
+        }
+        // 檢查並添加開始日期
+        if (article.start_date && article.start_date !== "0000-00-00") {
+            innerHTML += `<p>開始日期：${article.start_date}</p>`;
+        } else if(article.start_date == null && article.start_date == "0000-00-00" && article.article_type == "internship") {
+            innerHTML += `<p>開始日期：未公佈</p>`;
+        }
+        // 檢查並添加結束日期
+        if (article.end_date && article.end_date !== "0000-00-00") {
+            innerHTML += `<p>結束日期：${article.end_date}</p>`;
+        } else if (article.end_date == null && article.end_date == "0000-00-00" && article.article_type == "internship") {
+            innerHTML += `<p>結束日期：未公佈</p>`;
+        }
+        // 檢查並添加附加檔案
+        if (article.attachment_url) {
+            innerHTML += `<p><a href="${article.attachment_url}" download>下載附加檔案</a></p>`;
+        }
+        // 添加發佈時間
+        if (article.created_at) {
+            innerHTML += `<p>發佈時間：${article.created_at}</p>`;
+        }                        
+        // 關閉 HTML 結構
+        innerHTML += `</div>`;
+        //根據不同葉面顯示不同按鈕
+        if (pageType === "index") {
+            innerHTML += `
+                <div class='followPart' id='followContainer-${article.article_id}'>
+                    <button class='btn' id='followBtn-${article.article_id}' type='button'>關注</button>
+                </div>
+            `;
+        }
+        if (pageType === "myArticle") {
+            innerHTML += `
+                <div class='editPart'>
+                    <a href='reviseArticle.php?article_id=${article.article_id}'>
+                        <button class='btn' type='button'>修改</button>
+                    </a>
+                    <br>
+                    <a href='deleteArticle.php?article_id=${article.article_id}'>
+                        <button class='btn' type='button'>刪除</button>
+                    </a>
+                </div>
+            `;
+        }
+        // 設定文章內容
+        articleElement.innerHTML = innerHTML;
+        // 插入到容器中
+        container.appendChild(articleElement);
+        window.getComputedStyle(articleElement);
+    }      
+    }
 });

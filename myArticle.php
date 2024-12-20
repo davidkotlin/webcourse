@@ -37,9 +37,9 @@
                     <div class="showSection">
                         <h1 class="title">發佈的公告</h1>
                         <div class="searchArea">
-                            <label for="searchPosts">搜尋:</label>
-                            <input type="text" id="searchPosts" placeholder="請輸入關鍵字">
-                            <button class="btn" id="searchBtn" type="button">搜尋</button>
+                            <label for="searchInput">搜尋:</label>
+                            <input type="text" id="searchInput" name="searchInput" placeholder="請輸入文章名稱或企業名稱">
+                            <button class="btn" id="searchBtn" data-page="myArticle" type="button">搜尋</button>
                         </div>
                         <div class="container">
                                 <?php
@@ -120,9 +120,9 @@
                     <div class="showSection">
                         <h1 class="title">發佈的實習資訊</h1>
                         <div class="searchArea">
-                            <label for="searchPosts">搜尋:</label>
-                            <input type="text" id="searchPosts" placeholder="請輸入關鍵字">
-                            <button class="btn" id="searchBtn" type="button">搜尋</button>
+                            <label for="searchInput">搜尋:</label>
+                            <input type="text" id="searchInput" name="searchInput" placeholder="請輸入文章名稱或企業名稱">
+                            <button class="btn" id="searchBtn" data-page="myArticle" type="button">搜尋</button>
                         </div>
                         <div class="container">
                                 <?php
@@ -182,8 +182,7 @@
                     </div>
                 </div>
             </div>
-        <?php elseif ($_SESSION["user_role"] === "student"): ?>
-            
+        <?php elseif ($_SESSION["user_role"] === "student"): ?> 
             <nav class="navbar">
                 <div class="navbar__container">
                     <a class="navbar__logo" href="index.php">產業實習平台</a>
@@ -205,9 +204,9 @@
                     <div class="showSection">
                         <h1 class="title">發佈的報告書</h1>
                         <div class="searchArea">
-                            <label for="searchPosts">搜尋:</label>
-                            <input type="text" id="searchPosts" placeholder="請輸入關鍵字">
-                            <button class="btn" id="searchBtn" type="button">搜尋</button>
+                            <label for="searchInput">搜尋:</label>
+                            <input type="text" id="searchInput" name="searchInput" placeholder="請輸入文章名稱或企業名稱">
+                            <button class="btn" id="searchBtn" data-page="myArticle" type="button">搜尋</button>
                         </div>
                         <div class="container">
                                 <?php

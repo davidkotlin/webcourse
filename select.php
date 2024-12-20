@@ -37,9 +37,9 @@
                     <div class="showSection">
                         <h1 class="title">精選文章</h1>
                         <div class="searchArea">
-                            <label for="searchPosts">搜尋:</label>
-                            <input type="text" id="searchPosts" placeholder="請輸入關鍵字">
-                            <button class="btn" id="searchBtn" type="button">搜尋</button>
+                            <label for="searchInput">搜尋:</label>
+                            <input type="text" id="searchInput" name="searchInput" placeholder="請輸入文章名稱或企業名稱">
+                            <button class="btn" id="searchBtn" data-page="select" type="button">搜尋</button>
                         </div>
                         <div class="container">
                             <?php
@@ -114,9 +114,9 @@
                     <div class="showSection">
                         <h1 class="title">精選文章</h1>
                         <div class="searchArea">
-                            <label for="searchPosts">搜尋:</label>
-                            <input type="text" id="searchPosts" placeholder="請輸入關鍵字">
-                            <button class="btn" id="searchBtn" type="button">搜尋</button>
+                            <label for="searchInput">搜尋:</label>
+                            <input type="text" id="searchInput" name="searchInput" placeholder="請輸入文章名稱或企業名稱">
+                            <button class="btn" id="searchBtn" data-page="select" type="button">搜尋</button>
                         </div>
                         <div class="container">
                             <?php
@@ -191,9 +191,9 @@
                     <div class="showSection">
                         <h1 class="title">精選文章</h1>
                         <div class="searchArea">
-                            <label for="searchPosts">搜尋:</label>
-                            <input type="text" id="searchPosts" placeholder="請輸入關鍵字">
-                            <button class="btn" id="searchBtn" type="button">搜尋</button>
+                            <label for="searchInput">搜尋:</label>
+                            <input type="text" id="searchInput" name="searchInput" placeholder="請輸入文章名稱或企業名稱">
+                            <button class="btn" id="searchBtn" data-page="select" type="button">搜尋</button>
                         </div>
                         <div class="container">
                             <?php

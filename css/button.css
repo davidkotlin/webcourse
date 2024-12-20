@@ -31,6 +31,20 @@
     background-color: #41884c;
 }
 /*首頁sidebar按鈕*/
+.sidebarFilterBtn{
+    width: 100%;
+    margin: 10px 0;
+    background-color: #234f2c;
+    color: white;
+    font-size: 20px;
+    border-radius: 4px;
+    padding: 5px 10px; 
+    transition: background-color 0.3s ease;
+    font-size: 15px;
+}
+.sidebarFilterBtn:hover{
+    background-color: #41884c;
+}
 .sidebarBtn {
     width: 100%;
     margin: 10px 0;
