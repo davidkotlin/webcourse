@@ -301,15 +301,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     // 上傳
     if (submitBtn) {
-        submitBtn.addEventListener('click', function(event) {
-            event.preventDefault(); // 防止表單默認提交行為
+        submitBtn.addEventListener('click', function() {
             handleFormSubmit('upload_form');
         });
     }
     //修改文章
     if (reviseArticleBtn){
-        reviseArticleBtn.addEventListener("click",function(event) {
-            event.preventDefault();
+        reviseArticleBtn.addEventListener("click",function() {
             handleFormSubmit("revise_form");
         })
     }
@@ -466,31 +464,34 @@ document.addEventListener('DOMContentLoaded', function() {
         sidebar.addEventListener("click",function(event) {
             const button = event.target;
             if (button.classList.contains("sidebarFilterBtn")) {
-                const pageType = button.dataset.page;
-                console.log(pageType);
-                // fetch("type.php", {
-                //     method: "POST",
-                //     headers: {
-                //         "Content-Type": "application/json"
-                //     }
-                // })
-                // .then(response => response.json())
-                // .then(jsonData => {
-                //     if (jsonData.success) {
-                //         const articles = jsonData.searchResults;
-                //         filterArticles(articles, pageType);              
-                //     } else {
-                //         alert("篩選失敗：" + jsonData.message);
-                //     }
-                // })
-                // .catch(error => {
-                //     console.error("篩選發生錯誤:", error);
-                // });
+                const filterInput = button.dataset.page;
+                console.log(filterInput);
+                fetch("filter.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        filterInput: filterInput
+                    })
+                })
+                .then(response => response.json())
+                .then(jsonData => {
+                    if (jsonData.success) {
+                        const articles = jsonData.searchResults;
+                        filterArticles(articles);              
+                    } else {
+                        alert("篩選失敗：" + jsonData.message);
+                    }
+                })
+                .catch(jsonData => {
+                    console.error("篩選發生錯誤:", jsonData.message);
+                });
             }
         });
     }
     //首頁篩選變化函數
-    function filterArticles(articles, pageType) {
+    function filterArticles(articles, pageType = "index") {
         const container = document.querySelector(".container");
         container.innerHTML = "";
         //顯示搜尋清單
@@ -538,7 +539,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // 關閉 HTML 結構
         innerHTML += `</div>`;
         //根據不同葉面顯示不同按鈕
-        if (pageType === "index") {
+        if (pageType === "index" && isLoggedIn) {
             innerHTML += `
                 <div class='followPart' id='followContainer-${article.article_id}'>
                     <button class='btn' id='followBtn-${article.article_id}' type='button'>關注</button>

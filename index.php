@@ -11,6 +11,7 @@
 <body>
     <?php
         session_start();
+        $isLoggedIn = isset($_SESSION['loggedin']) ? $_SESSION['loggedin'] : false;
     ?>
     <nav class="navbar">
         <div class="navbar__container">
@@ -43,18 +44,18 @@
     </nav>
     <div class="main">
         <div class="sidebar" id="sidebar">
-            <button class="sidebarFilterBtn" data-page="ElectronicElectrical" type="button">電子電機</button>
-            <button class="sidebarFilterBtn" data-page="ComputerPeripherals" type="button">電腦周邊</button>
-            <button class="sidebarFilterBtn" data-page="Semiconductors" type="button">半導體</button>
-            <button class="sidebarFilterBtn" data-page="CommunicationNetworks" type="button">通訊網路</button>
-            <button class="sidebarFilterBtn" data-page="InformationServices" type="button">資訊服務</button>
-            <button class="sidebarFilterBtn" data-page="FinanceInsurance" type="button">金融保險</button>
-            <button class="sidebarFilterBtn" data-page="BiotechnologyMedical" type="button">生技醫療</button>
-            <button class="sidebarFilterBtn" data-page="TextilesFibers" type="button">紡織纖維</button>
-            <button class="sidebarFilterBtn" data-page="Chemical" type="button">化學工業</button>
-            <button class="sidebarFilterBtn" data-page="Food" type="button">食品工業</button>
-            <button class="sidebarFilterBtn" data-page="Tourism" type="button">觀光餐旅</button>
-            <button class="sidebarFilterBtn" data-page="Others" type="button">其他</button>
+            <button class="sidebarFilterBtn" data-page="電子電機" type="button">電子電機</button>
+            <button class="sidebarFilterBtn" data-page="電腦周邊" type="button">電腦周邊</button>
+            <button class="sidebarFilterBtn" data-page="半導體" type="button">半導體</button>
+            <button class="sidebarFilterBtn" data-page="通訊網路" type="button">通訊網路</button>
+            <button class="sidebarFilterBtn" data-page="資訊服務" type="button">資訊服務</button>
+            <button class="sidebarFilterBtn" data-page="金融保險" type="button">金融保險</button>
+            <button class="sidebarFilterBtn" data-page="生技醫療" type="button">生技醫療</button>
+            <button class="sidebarFilterBtn" data-page="紡織纖維" type="button">紡織纖維</button>
+            <button class="sidebarFilterBtn" data-page="化學工業" type="button">化學工業</button>
+            <button class="sidebarFilterBtn" data-page="食品工業" type="button">食品工業</button>
+            <button class="sidebarFilterBtn" data-page="觀光餐旅" type="button">觀光餐旅</button>
+            <button class="sidebarFilterBtn" data-page="其他" type="button">其他</button>
         </div>
         <div class="mainContent">
             <div class="showSection">
@@ -135,6 +136,9 @@
             </div>
         </div>       
     </div>
+    <script>
+    const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+    </script>
     <script src="js/script.js"></script>
 </body>
 </html>
